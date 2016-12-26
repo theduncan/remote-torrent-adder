@@ -41,6 +41,11 @@ RTA.clients.config.generalsettings = multiline(function(){/*
 						<span class="tip">Check if the WebUI runs on SSL (http<strong>s</strong>://). Set the Port to 443!</span></td>
 				</tr>
 				<tr>
+					<td><span class="title">Directory</span></td>
+					<td><input type="text" name="directory" /><br />
+						<span class="tip">Directory for new torrents (blank for default)</span></td>
+				</tr>
+				<tr>
 					<td><span class="title">Username</span></td>
 					<td><input type="text" name="login" /><br />
 						<span class="tip">Login name of the WebUI</span></td>

@@ -29,10 +29,18 @@ function sendXHRTransmissionWebUI(server, torrentdata, sessionid) {
 		}
 	};
 	
-	if(torrentdata.substring(0,7) == "magnet:") {
-		message = JSON.stringify({"method": "torrent-add", "arguments": {"paused": "false", "filename": torrentdata}});
+	if (server.directory != null){
+		if(torrentdata.substring(0,7) == "magnet:") {
+			message = JSON.stringify({"method": "torrent-add", "arguments": {"download-dir": server.directory, "paused": "false", "filename": torrentdata}});
+		} else {
+			message = JSON.stringify({"method": "torrent-add", "arguments": {"download-dir": server.directory, "metainfo": b64_encode(ui8a)}});
+		}
 	} else {
-		message = JSON.stringify({"method": "torrent-add", "arguments": {"metainfo": b64_encode(ui8a)}});
+		if(torrentdata.substring(0,7) == "magnet:") {
+			message = JSON.stringify({"method": "torrent-add", "arguments": {"paused": "false", "filename": torrentdata}});
+		} else {
+			message = JSON.stringify({"method": "torrent-add", "arguments": {"metainfo": b64_encode(ui8a)}});
+		}
 	}
 	xhr.send(message);
 }
